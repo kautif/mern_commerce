@@ -6,7 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 function App() {
   return (
       <BrowserRouter>
-        <div classNameName="grid-container">
+        <div className="grid-container">
             <header className="row">
                 <div>
                     <a className="nav-title" href="/">MERN Commerce</a>
