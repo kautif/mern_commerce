@@ -85,7 +85,7 @@ input,
 select,
 textarea,
 button {
-  padding: 1rem;
+  padding: 0.25em;
   border-radius: 0.5rem;
   border: 0.1rem #a4a4a4 solid;
   font-size: 1.6em;
@@ -94,9 +94,17 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.cart-price {
+  padding-top: 0.75em;
+}
+
+.cart-quantity {
+  width: 75px;
+}
+
 button {
   background-color: #f8f8f8;
-  cursor: pointer
+  cursor: pointer;
 }
 
 input:hover,
@@ -161,10 +169,19 @@ a.nav-title {
   flex: 2 1 50rem;
 }
 
+.min-30 {
+  min-width: 30rem;
+}
+
 /* Images */
 
 img {
   border-radius: 0.5rem;
+}
+
+img.small {
+  max-width: 5rem;
+  width: 100%;
 }
 
 img.medium {
