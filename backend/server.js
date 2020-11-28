@@ -1,9 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import productRouter from './router/productRouter.js';
 import userRouter from './router/userRouter.js';
 
+dotenv.config();
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 mongoose.connect(process.env.MONGO_DB_URL || 'mongodb://localhost/mern_commerce', {
     useNewUrlParser: true,
