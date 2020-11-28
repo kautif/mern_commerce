@@ -17,7 +17,6 @@ const data = {
     ],
     products: [
         {
-            _id: '1',
             name: 'Nike Dress Shirt',
             category: 'shirts',
             image: 'images/p1.jpg',
@@ -29,7 +28,6 @@ const data = {
             description: 'high quality product'    
         }, 
         {
-            _id: '2',
             name: 'Adidas Dress Shirt',
             category: 'shirts',
             image: 'images/p2.jpg',
@@ -41,7 +39,6 @@ const data = {
             description: 'high quality product'    
         },
         {
-            _id: '3',
             name: 'Lacoste Dress Shirt',
             category: 'shirts',
             image: 'images/p3.jpg',
@@ -53,7 +50,6 @@ const data = {
             description: 'high quality product'    
         },
         {
-            _id: '4',
             name: 'Nike Dress Pants',
             category: 'pants',
             image: 'images/p4.jpg',
@@ -65,7 +61,6 @@ const data = {
             description: 'high quality product'    
         },
         {
-            _id: '5',
             name: 'Adidas Dress Pants',
             category: 'pants',
             image: 'images/p5.jpg',
@@ -77,7 +72,6 @@ const data = {
             description: 'high quality product'    
         },
         {
-            _id: '6',
             name: 'Lacoste Dress Pants',
             category: 'pants',
             image: 'images/p6.jpg',
