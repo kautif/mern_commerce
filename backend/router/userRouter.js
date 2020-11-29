@@ -12,7 +12,7 @@ userRouter.get('/seed', expressAsyncHandler(async(req, res) => {
     res.send(createdUsers);
 }))
 
-userRouter.post('/signin', async (req, res) => {
+userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({email: req.body.email});
     if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -23,10 +23,10 @@ userRouter.post('/signin', async (req, res) => {
                 isAdmin: user.isAdmin,
                 token: generateToken(user)
             })
+            return;
         }
-        return;
     }
     res.status(401).send({message: "invalid email or password"});
 })
-
+);
 export default userRouter;
