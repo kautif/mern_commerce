@@ -30,7 +30,7 @@ export default function ShippingScreen (props) {
                 <div>
                     <h1>Shipping Address</h1>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label htmlFor="fullName">Full Name</label>
                     <input
                         type="text"
@@ -42,7 +42,7 @@ export default function ShippingScreen (props) {
                     >
                     </input>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label htmlFor="address">Address</label>
                     <input
                         type="text"
@@ -54,7 +54,7 @@ export default function ShippingScreen (props) {
                     >
                     </input>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
@@ -66,7 +66,7 @@ export default function ShippingScreen (props) {
                     >
                     </input>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label htmlFor="postalCode">Postal/Zip Code</label>
                     <input
                         type="text"
@@ -77,7 +77,7 @@ export default function ShippingScreen (props) {
                         required>
                     </input>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label htmlFor="country">Country</label>
                     <input
                         type="text"
@@ -88,7 +88,7 @@ export default function ShippingScreen (props) {
                         required>
                     </input>
                 </div>
-                <div>
+                <div className="shipping-field">
                     <label/>
                     <button className="primary" type="submit">
                         Continue

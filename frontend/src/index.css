@@ -268,6 +268,31 @@ img.large {
   margin: 1rem 0;
 }
 
+.shipping-field .primary {
+  text-align: center;
+}
+
+.shipping-field input {
+  width: 100%;
+}
+
+.shipping-field button {
+  width: 47%;
+}
+
+.current-order {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-card {
+  width: 65%;
+}
+
+.order-summary {
+  width: 30%;
+}
+
 /* Dropdown */
 
 .dropdown {
