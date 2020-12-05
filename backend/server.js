@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import productRouter from './router/productRouter.js';
 import userRouter from './router/userRouter.js';
+import orderRouter from './router/orderRouter.js';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ mongoose.connect(process.env.MONGO_DB_URL || 'mongodb://localhost/mern_commerce'
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/', (req, res) => {
     res.send("Server reached");
