@@ -1,7 +1,11 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
+import { createOrder } from '../actions/orderActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import AlertMessage from '../components/AlertMessage';
+import Loading from '../components/Loading';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 
 export default function OrderScreen (props){
     const cart = useSelector((state) => state.cart);
@@ -9,6 +13,11 @@ export default function OrderScreen (props){
         props.history.push('/payment');
     }
 
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const {loading, success, errpr, order} = orderCreate;
+    // console.log("orderCreate: ", errpr);
+    // console.log("orderCreate order: ", order);
+    console.log("state: ", orderCreate);
     const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(
         cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
@@ -16,9 +25,17 @@ export default function OrderScreen (props){
     cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
     cart.totalPrice = cart.itemsPrice * cart.shippingPrice + cart.taxPrice;
-    const orderHandler = () => {
 
+    const dispatch = useDispatch();
+    const orderHandler = () => {
+        dispatch(createOrder({...cart, orderItems: cart.cartItems}));
     };
+    useEffect(() => {
+        if (success) {
+            props.history.push(`/order_placed/${order._id}`);
+            dispatch({type: ORDER_CREATE_RESET});
+        }
+    }, [dispatch, order, props.history, success])
 
     return (
 <div>
@@ -66,6 +83,8 @@ export default function OrderScreen (props){
                                 Submit Order
                         </button>
                     </li>
+                    {loading && <Loading></Loading>}
+                    {errpr && <AlertMessage variant="danger">{errpr}</AlertMessage>}
                 </ul>
         </div>
         <div className="card card-body order-card">

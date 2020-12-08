@@ -1,4 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
+import express from 'express';
 import Order from '../models/orderModel.js';
 import { isAuth } from '../utils.js';
 

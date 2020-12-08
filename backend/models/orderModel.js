@@ -26,10 +26,10 @@ const orderSchema = new mongoose.Schema({
     taxPrice: {type: String, required: true},
     totalPrice: {type: String, required: true},
     user: {type: String, required: true},
-    isPaid: {type: String, required: true},
-    paidAt: {type: String, required: true},
-    isDelivered: {type: String, required: true},
-    deliveredAt: {type: String, required: true},
+    isPaid: {type: Boolean, default: false},
+    paidAt: {type: Date},
+    isDelivered: {type: Boolean, default: false},
+    deliveredAt: {type: Date}
 },
 {
     timestamps: true
