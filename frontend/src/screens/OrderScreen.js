@@ -14,10 +14,10 @@ export default function OrderScreen (props){
     }
 
     const orderCreate = useSelector((state) => state.orderCreate);
-    const {loading, success, errpr, order} = orderCreate;
+    const {loading, success, error, order} = orderCreate;
     // console.log("orderCreate: ", errpr);
     // console.log("orderCreate order: ", order);
-    console.log("state: ", orderCreate);
+    console.log("order: ", order);
     const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(
         cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
@@ -84,7 +84,7 @@ export default function OrderScreen (props){
                         </button>
                     </li>
                     {loading && <Loading></Loading>}
-                    {errpr && <AlertMessage variant="danger">{errpr}</AlertMessage>}
+                    {error && <AlertMessage variant="danger">{error}</AlertMessage>}
                 </ul>
         </div>
         <div className="card card-body order-card">

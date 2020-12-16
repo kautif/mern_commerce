@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import OrderScreen from './screens/OrderScreen';
+import OrderPlacedScreen from './screens/OrderPlacedScreen';
 
 function App() {
     const cart = useSelector((state) => state.cart);
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/shipping" component={ShippingScreen}></Route>
                 <Route path="/payment" component={PaymentScreen}></Route>
                 <Route path="/order" component={OrderScreen}></Route>
+                <Route path="/order_placed/:id" component={OrderPlacedScreen}></Route>
                 <Route path="/" component={HomeScreen} exact></Route>
             </main>
             <footer className="row center">All Rights Reserved</footer>

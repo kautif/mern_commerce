@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_DB_URL || 'mongodb://localhost/mern_commerce'
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-app.use('/api/orders', orderRouter);
+app.use('/api/order_placed', orderRouter);
 
 app.get('/', (req, res) => {
     res.send("Server reached");
