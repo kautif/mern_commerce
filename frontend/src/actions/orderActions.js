@@ -6,7 +6,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({type: ORDER_CREATE_REQUEST, payload: order});
     try {
         const {userSignIn: {userInfo}} = getState();
-        const {data} = await Axios.post('/api/order_placed', order, {
+        const {data} = await Axios.post('/api/orders', order, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             }
@@ -29,7 +29,7 @@ export const orderDetails = (orderID) => async (dispatch, getState) => {
     const {userSignIn: {userInfo}} = getState();
 
     try {
-        const {data} = await Axios.get(`/api/order_placed/${orderID}`, {
+        const {data} = await Axios.get(`/api/orders/${orderID}`, {
             headers: {Authorization: `Bearer ${userInfo.token}`}
         })
         dispatch({type: ORDER_DETAILS_SUCCESS, payload: data});

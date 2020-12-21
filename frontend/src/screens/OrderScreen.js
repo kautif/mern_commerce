@@ -15,9 +15,6 @@ export default function OrderScreen (props){
 
     const orderCreate = useSelector((state) => state.orderCreate);
     const {loading, success, error, order} = orderCreate;
-    // console.log("orderCreate: ", errpr);
-    // console.log("orderCreate order: ", order);
-    console.log("order: ", order);
     const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(
         cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
@@ -49,7 +46,7 @@ export default function OrderScreen (props){
         </div>
         <div className="card card-body order-summary">
                 <ul>
-                    <li><h2>Order Screen</h2></li>
+                    <li><h2>Payment</h2></li>
                     <li>
                         <div className="row">
                             <div><span>Items</span></div>

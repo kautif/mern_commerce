@@ -1,18 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 import AlertMessage from '../components/AlertMessage';
+import {orderDetails} from '../actions/orderActions';
 import Loading from '../components/Loading';
-import { orderDetails } from '../actions/orderActions';
+import Axios from 'axios';
+import {PayPalButton} from 'react-paypal-button-v2';
 
 export default function OrderPlacedScreen (props){
     const orderID = props.match.params.id;
+    const [sdkReady, setSdkReady] = useState(false);
     const placedOrderDetails = useSelector((state) => state.placedOrderDetails);
     const {order, loading, error} = placedOrderDetails;
+    console.log("OrderPlacedScreen: ", placedOrderDetails);
+    // const userSignIn = useSelector((state) => state.userSignin);
+    // const { userInfo } = userSignIn;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(orderDetails(orderID));
-    }, [dispatch, orderID])
+        const addPayPalScript = async () => {
+            const {data} = await Axios.get('/api/config/paypal');
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+            script.async = true;
+            script.onload = () => {
+                setSdkReady(true)
+            }
+            document.body.appendChild(script);
+        }
+        if (!order._id) {
+            dispatch(orderDetails(orderID));   
+        } else {
+            if (!order.isPaid) {
+                if (!window.paypal) {
+                    addPayPalScript();
+                } else {
+                    setSdkReady(true);
+                }
+            }
+        }
+    }, [dispatch, order, orderID, sdkReady])
+
+    const successPaymentHandler = () => {
+
+    }
 console.log("orderPlaced orderID: ", placedOrderDetails);
     return loading ? (<Loading></Loading>) :
     error ? (<AlertMessage variant="danger">{error}</AlertMessage>) : (
@@ -59,6 +90,18 @@ console.log("orderPlaced orderID: ", placedOrderDetails);
                             <div><span>${parseFloat(order.totalPrice).toFixed(2)}</span></div>
                         </div>
                     </li>
+                    {!order.isPaid && (
+                        <li>
+                            {!sdkReady ? (
+                                <Loading></Loading>
+                            ) : (
+                                <PayPalButton
+                                    amount={order.totalPrice}
+                                    onSuccess={successPaymentHandler}
+                                ></PayPalButton>
+                            )}
+                        </li>
+                    )}
                 </ul>
         </div>
         <div className="card card-body order-card">

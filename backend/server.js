@@ -28,7 +28,10 @@ mongoose.connect(process.env.MONGO_DB_URL || 'mongodb://localhost/mern_commerce'
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-app.use('/api/order_placed', orderRouter);
+app.use('/api/orders', orderRouter);
+app.get('/api/config/paypal', (req, res) => {
+    res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
+})
 
 app.get('/', (req, res) => {
     res.send("Server reached");

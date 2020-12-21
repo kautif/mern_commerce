@@ -22,15 +22,19 @@ export const orderReducer = (state = {}, action) => {
     }
 }
 
-export const orderDetailsReducer = (state = {loading: true, order: {}}, action) => {
+export const orderDetailsReducer = (state = {loading: true}, action) => {
     switch (action.type) {
         case ORDER_DETAILS_REQUEST:
+            console.log("orderDetailsReducer: ", state);
             return {loading: true};
         case ORDER_DETAILS_SUCCESS:
+            console.log("orderDetailsReducer: ", state);
             return {loading: false, order: action.payload};
         case ORDER_DETAILS_FAIL:
+            console.log("orderDetailsReducer: ", state);
             return {loading: false, error: action.payload};
         default:
+            console.log("orderDetailsReducer: ", state);
             return state;
     }
 }
